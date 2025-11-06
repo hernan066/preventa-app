@@ -44,12 +44,14 @@ const MobileMap = () => {
         zoom={16}
         style={{ height: "70vh", width: "100%" }}
       >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; OpenStreetMap contributors"
-        />
-        <MapClickHandler />
-        {lat && lng && <Marker position={[lat, lng]} />}
+        <>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; OpenStreetMap contributors"
+          />
+          <MapClickHandler />
+          {lat && lng && <Marker position={[lat, lng]} />}
+        </>
       </MapContainer>
     </div>
   );
