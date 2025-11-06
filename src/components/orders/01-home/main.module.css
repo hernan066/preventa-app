@@ -1,0 +1,50 @@
+.container {
+  min-height: calc(100vh + 20px);
+
+  
+  background-color: var(--color-grey);
+  position: relative;
+  text-align: center;
+}
+.welcome_text{
+  padding-top: 20px;
+  padding-inline: 10px;
+  color: var(--color-white);
+  
+}
+.welcome_text h2{
+ font-size: 25px;
+  margin-bottom: 10px;
+  
+}
+.logo__img{
+  width: 100px;
+ 
+}
+
+.btn_container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 40px;
+  background-color: var(--color-white);
+  height: 300px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  position: absolute;
+  bottom: 98px;
+  left: 0;
+  right: 0;
+}
+.btn {
+  width: 95%;
+  color: var(--color-white);
+  background-color: var(--color-grey);
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  letter-spacing: 1px;
+}

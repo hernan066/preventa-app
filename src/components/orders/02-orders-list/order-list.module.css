@@ -1,0 +1,84 @@
+.todos__container {
+  min-height: calc(100vh + 150px);
+  text-align: center;
+  padding: 10px 10px;
+  margin-bottom: 80px;
+}
+.todos__container h2 {
+  margin-bottom: 20px;
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  position: relative;
+  background: var(--gradient-blue);
+  color: var(--color-white);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+.todos__container h2 span {
+  position: absolute;
+  left: 10px;
+  top: 22px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.col {
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 10px 2px;
+}
+.col-1 {
+  flex: 1;
+}
+.col-2 {
+  flex: 2;
+}
+.col-3 {
+  flex: 3;
+}
+.title {
+  font-size: 18px;
+  font-weight: 600;
+}
+.btn-estado {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.order__card__container {
+  box-shadow: var(--box-shadow-1);
+  padding: 15px 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+.order__status_circle {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+
+  display: inline-block;
+  border: 1px solid var(--color-black);
+}
+.order__card__distance {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 1px 3px;
+  border-radius: 5px;
+}
+.pendiente {
+  background-color: var(--color-pendiente);
+}
+.entregado {
+  background-color: var(--color-completado);
+}
+.rechazado {
+  background-color: var(--color-rechazado);
+}

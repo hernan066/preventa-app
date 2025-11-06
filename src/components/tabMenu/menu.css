@@ -1,0 +1,136 @@
+.menu__container {
+  height: 70px;
+  background: var(--color-grey);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 600px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 0 10px;
+  z-index: 20;
+ 
+}
+
+.list__ul {
+  display: flex;
+  height: 100%;
+  color: black;
+  align-items: center;
+  list-style: none;
+  width: 100%;
+  position: relative;
+  z-index: 20;
+}
+.list__li {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.list__li svg {
+  position: relative;
+  display: block;
+  line-height: 75px;
+  font-size: 30px;
+  text-align: center;
+  transition: 0.5s;
+
+  color: var(--color-white);
+  z-index: 3;
+}
+.list__li.active svg {
+  transform: translateY(-35px);
+}
+.list__li a {
+  font-size: 36px;
+  text-decoration: none;
+  color: var(--color-black);
+}
+.list__li a span {
+  font-size: 11px;
+  text-decoration: none;
+  color: var(--color-white);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.5s;
+  opacity: 0;
+
+  z-index: 3;
+}
+.list__li.active a span {
+  opacity: 1;
+  transform: translateY(5px);
+}
+
+.indicator {
+  position: absolute;
+  top: -50%;
+  left: 0px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 6px solid var(--color-white);
+  background: radial-gradient(
+    circle at 65% 15%,
+    white 1px,
+    rgb(69, 80, 80) 3%,
+    rgb(0, 0, 0) 60%,
+    rgb(65, 73, 73) 100%
+  );
+  transition: var(--easing);
+  z-index: 2;
+}
+
+.list__li:nth-child(1).active ~ .indicator {
+  transform: translateX(var(--widthMenu1));
+}
+.list__li:nth-child(2).active ~ .indicator {
+  transform: translateX(var(--widthMenu2));
+}
+.list__li:nth-child(3).active ~ .indicator {
+  transform: translateX(var(--widthMenu3));
+}
+.list__li:nth-child(4).active ~ .indicator {
+  transform: translateX(var(--widthMenu4));
+}
+.list__li:nth-child(5).active ~ .indicator {
+  transform: translateX(var(--widthMenu5));
+}
+
+.indicator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -10px 0 0 var(--color-white);
+  filter: blur(1);
+}
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border-top-left-radius: 20px;
+  box-shadow: 0 -10px 0 0 var(--color-white);
+  filter: blur(1);
+}
+.white {
+  height: 20px;
+  max-width: 600px;
+  background-color: var(--color-white);
+
+  left: -10px;
+  right: 0;
+  bottom: 60px;
+  position: fixed;
+  z-index: 2;
+}

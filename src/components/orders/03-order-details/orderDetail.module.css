@@ -1,0 +1,266 @@
+.pedido__container {
+  min-height: calc(100vh + 70px);
+  padding: 20px 10px;
+  text-align: center;
+  padding-bottom: 60px;
+}
+.pedido__container h2 {
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  font-size: 25px;
+  background: var(--gradient-blue);
+  color: var(--color-white);
+  height: 70px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.pedido__container h2 span {
+  position: absolute;
+  left: 5px;
+  top: 20px;
+}
+.pedido__container h3 {
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+.pedido__container h3 span {
+  background-color: var(--color-pendiente);
+  padding: 5px 10px;
+  border-radius: 8px;
+  color: #fff;
+  text-shadow: 0 0 3px #111;
+}
+.pedido__container h3 span.pendiente {
+  background-color: var(--color-pendiente);
+}
+.pedido__container h3 span.rechazado {
+  background-color: var(--color-rechazado);
+}
+.pedido__container h3 span.entregado {
+  background-color: var(--color-completado);
+}
+.pedido__card {
+  border: 1px solid #ccc;
+  padding: 15px 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-1);
+  margin-bottom: 20px;
+  background-color: white;
+}
+.pedido__card > div {
+  border-top: 1px solid #ccc;
+  padding: 8px 0;
+}
+
+.btn__estado {
+  background: var(--gradient-blue);
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #fff;
+  font-weight: 600;
+}
+.btn__volver {
+  background-color: transparent;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 15px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+
+  font-weight: 600;
+  background-color: white;
+  box-shadow: var(--box-shadow-2);
+}
+#item_totalQuantity {
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  min-width: 35px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+/* ---------------formulario cambiar estado------------ */
+
+.OrderPayment__container {
+  width: 100%;
+  background-color: var(--color-white);
+
+  min-height: 89vh;
+}
+.OrderPayment__container h2 {
+  margin-bottom: 25px;
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  position: relative;
+}
+.OrderPayment__container h2 span {
+  position: absolute;
+  left: 5px;
+  top: 20px;
+}
+.OrderPayment__card {
+  border: 1px solid #ccc;
+  padding: 15px 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-1);
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+.OrderPayment__container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  margin-top: 14px;
+}
+.OrderPayment__container form input {
+  position: relative;
+  padding: 8px;
+}
+.OrderPayment__container form select {
+  position: relative;
+  padding: 8px;
+}
+.OrderPayment__container form input[type="radio"] {
+  accent-color: red;
+}
+
+.OrderPayment__container form label input {
+  margin-right: 5px;
+}
+
+.OrderPayment__container form textarea {
+  padding: 10px;
+  font-size: 15px;
+}
+.orderDetail__label {
+  font-size: 14px;
+}
+.unit__price {
+  font-weight: 800;
+}
+
+.autocomplete-btn__container {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.autocomplete-btn__container div {
+  flex: 1;
+  height: 35px;
+  color: green;
+  border: none;
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: transparent;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#autocomplete-btn-debt {
+  color: red;
+  border: none;
+  border: 1px solid red;
+}
+.detail__title {
+  margin-bottom: 15px;
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  position: relative;
+}
+.detail__title span {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+.order__address {
+  display: flex;
+  gap: 3px;
+}
+.order__address img {
+  width: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+.col {
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 10px 2px;
+}
+
+.pendiente {
+  background-color: var(--color-pendiente);
+  padding: 3px;
+
+  border-radius: 5px;
+}
+.entregado {
+  background-color: var(--color-completado);
+  padding: 3px;
+  color: #fff;
+  border-radius: 5px;
+}
+.rechazado {
+  background-color: var(--color-rechazado);
+  padding: 3px;
+  color: #fff;
+  border-radius: 5px;
+}
+.products__titles {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  background-color: #646464;
+  color: var(--color-white);
+  padding: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  border: 1px solid #111;
+}
+.product__name {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.product__quantity {
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  min-width: 35px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}

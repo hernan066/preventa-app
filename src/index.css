@@ -1,0 +1,224 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --font-1: "Bebas Neue", cursive;
+  --color-pendiente: #ddd613;
+  --color-completado: #37b00b;
+  --color-rechazado: #dd132b;
+  --color-red: #db1212;
+  --color-black: #4c4c4c;
+  --color-white: #f1f1f1;
+  --color-grey: #494848;
+  --color-yellow: #f9b931;
+  --color-black2: #131312;
+
+
+
+  --gradient-primary: linear-gradient(
+    0deg,
+    rgba(1, 129, 161, 1) 0%,
+    rgba(0, 159, 199, 1) 100%
+  );
+  --gradient-red: linear-gradient(
+    0deg,
+    rgba(162, 3, 3, 1) 50%,
+    rgba(252, 69, 69, 1) 100%
+  );
+  --gradient-blue: linear-gradient(
+    0deg,
+    rgba(4, 134, 167, 1) 50%,
+    rgba(0, 189, 236, 1) 100%
+  );
+  --gradient-green: linear-gradient(
+    0deg,
+    rgba(7, 162, 3, 1) 50%,
+    rgba(69, 252, 78, 1) 100%
+  );
+  --gradient-yellow: linear-gradient(
+    0deg,
+    rgba(153, 162, 3, 1) 50%,
+    rgba(248, 252, 69, 1) 100%
+  );
+
+  --box-shadow-1: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+  --box-shadow-2: 3px 3px 5px #ccc, -3px -1px 5px #ccc;
+
+  --box-shadow-menu: 0 1rem 1.25rem 0 rgba(45, 90, 193, 0.5),
+    0 -0.25rem 1.5rem rgb(16, 87, 162) inset,
+    0 0.75rem 0.5rem rgba(255, 255, 255, 0.4) inset,
+    0 0.25rem 0.5rem 0 rgb(70, 145, 207) inset;
+
+  --font-1: "Open Sans", sans-serif;
+  --font-2: "Bebas Neue", sans-serif;
+
+  --bkg: #292c2c;
+  --white: #eeeeee;
+  --accent: #0cbcd3;
+  --easing: 0.6s cubic-bezier(0.3, -0.01, 0.06, 1);
+
+  --widthMenu1: 0px;
+  --widthMenu2: 0px;
+  --widthMenu3: 0px;
+  --widthMenu4: 0px;
+  --widthMenu5: 0px;
+}
+body {
+  font-family: var(--font-1);
+  max-width: 600px;
+  border-right: 1px solid #ddd;
+  background-color: var(--color-white);
+}
+.pendiente {
+  background-color: var(--color-pendiente);
+}
+.entregado {
+  background-color: var(--color-completado);
+}
+.rechazado {
+  background-color: var(--color-rechazado);
+}
+.flex {
+  display: flex;
+}
+.sb {
+  justify-content: space-between;
+}
+.center {
+  justify-content: center;
+}
+.bold {
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+a {
+  text-decoration: none;
+  color: var(--color-black);
+}
+textarea,
+input {
+  outline: var(--color-red);
+}
+
+/*-------------- boton con loading---------------- */
+
+.btn-load {
+  background-color: var(--color-red);
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  letter-spacing: 4px;
+  border-radius: 10px;
+  padding: 15px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+}
+.btn-load:hover {
+  box-shadow: 2px 2px 5px #887c7c;
+  transform: scale(1.003);
+}
+
+.button--loading .button__text {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.button--loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+.btn-load.password {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 10px;
+}
+
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.map-container {
+  width: 100%;
+  height: 65vh;
+}
+.AllOrdersMap-container {
+  width: 100%;
+  height: 88vh;
+}
+
+select,
+input {
+  outline-color: var(--color-primary);
+}
+
+/* swalStyles */
+.mi-popup {
+  background-color: var(--color-grey);
+  color: var(--color-white);
+  border-radius: 16px;
+  padding: 25px;
+}
+
+.mi-titulo {
+  color: var(--color-white);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.mi-boton-confirmar {
+  background-color: #d33;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.mi-boton-confirmar:hover {
+  background-color: #a00;
+}
+
+.mi-boton-cancelar {
+  background-color: #2b2b2b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-left: 10px;
+}
+
+.mi-boton-cancelar:hover {
+  background-color: #666;
+}
+

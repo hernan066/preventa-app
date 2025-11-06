@@ -1,0 +1,15 @@
+.error__container {
+  min-height: 92vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error__box {
+  height: 50px;
+  width: 250px;
+  border: 1px solid #e3ee8d;
+  background-color: #dee6a0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

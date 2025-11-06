@@ -1,0 +1,102 @@
+.OrderPayment__container {
+  width: 100%;
+  background-color: var(--color-white);
+
+  min-height: 89vh;
+}
+.OrderPayment__container h2 {
+  margin-bottom: 25px;
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  position: relative;
+}
+.OrderPayment__container h2 span {
+  position: absolute;
+  left: 5px;
+  top: 20px;
+}
+.OrderPayment__card {
+  border: 1px solid #ccc;
+  padding: 15px 15px;
+  border-radius: 15px;
+  box-shadow: var(--box-shadow-1);
+  margin-bottom: 20px;
+  background-color: white;
+}
+
+.OrderPayment__container form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: left;
+  margin-top: 14px;
+}
+.OrderPayment__container form input {
+  position: relative;
+  padding: 8px;
+}
+.OrderPayment__container form select {
+  position: relative;
+  padding: 8px;
+}
+.OrderPayment__container form input[type="radio"] {
+  accent-color: red;
+}
+
+.OrderPayment__container form label input {
+  margin-right: 5px;
+}
+
+.OrderPayment__container form textarea {
+  padding: 10px;
+  font-size: 15px;
+}
+.orderDetail__label {
+  font-size: 14px;
+}
+.unit__price {
+  font-weight: 800;
+}
+
+.autocomplete-btn__container {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.autocomplete-btn__container div {
+  flex: 1;
+  height: 35px;
+  color: green;
+  border: none;
+  border: 1px solid green;
+  border-radius: 5px;
+  background-color: transparent;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#autocomplete_btn_debt {
+  color: red;
+  border: none;
+  border: 1px solid red;
+}
+.detail__title {
+  margin-bottom: 15px;
+  font-family: var(--font-1);
+  letter-spacing: 2px;
+  position: relative;
+}
+.detail__title span {
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+.order__address {
+  display: flex;
+  gap: 3px;
+}
+.order__address img {
+  width: 20px;
+}
