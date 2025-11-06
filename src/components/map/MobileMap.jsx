@@ -8,22 +8,10 @@ import { setNegocioPosicion } from "../../redux/mapSlice";
 
 const MobileMap = () => {
   const dispatch = useDispatch();
-  const [userPosition, setUserPosition] = useState(null);
   const { lat, lng } = useSelector((state) => state.map);
+  const { latitude, longitude } = useSelector((state) => state.location);
 
   // Detectar posición actual del usuario
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const { latitude, longitude } = pos.coords;
-          setUserPosition([latitude, longitude]);
-        },
-        (err) => console.error("Error al obtener ubicación:", err),
-        { enableHighAccuracy: true }
-      );
-    }
-  }, []);
 
   // Manejar clics en el mapa
   const MapClickHandler = () => {
@@ -35,14 +23,16 @@ const MobileMap = () => {
     return null;
   };
 
-  if (!userPosition) return <p>Cargando ubicación...</p>;
-
   return (
     <div className={styles.mobileMap}>
       <MapContainer
-        center={userPosition}
+        center={
+          latitude && longitude
+            ? [latitude, longitude]
+            : [-34.57673407889358, -58.74409231553139]
+        }
         zoom={16}
-        style={{ height: "70vh", width: "100%" }}
+        style={{ height: "70dvh", width: "100%" }}
       >
         <>
           <TileLayer
