@@ -2,8 +2,10 @@ import styles from "./css.module.css";
 import { IoTrashOutline } from "react-icons/io5";
 import Swal from "sweetalert2";
 import { useDeleteNegocioMutation } from "../../../api/apiNegocio";
+import { useNavigate } from "react-router-dom";
 
 export const DeleteButton = ({ id }) => {
+  const navigate = useNavigate();
   const [deleteNegocio] = useDeleteNegocioMutation();
 
   const handleDelete = () => {
@@ -23,6 +25,7 @@ export const DeleteButton = ({ id }) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
         await deleteNegocio(id);
+        navigate('/home/negocios/lista');
         Swal.fire("Borrado!", "", "success");
       } else if (result.isDenied) {
         Swal.fire("Negocio no borrado", "", "info");
