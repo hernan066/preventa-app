@@ -1,10 +1,23 @@
-import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import styles from "./MobileMap.module.css";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setNegocioPosicion } from "../../redux/mapSlice";
+
+import L from "leaflet";
+import iconUrl from "leaflet/dist/images/marker-icon.png";
+import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
+import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+
+// Solución para el problema de iconos faltantes en producción
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+});
 
 const MobileMap = () => {
   const dispatch = useDispatch();
