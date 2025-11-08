@@ -1,3 +1,14 @@
 export const HistoryPage = () => {
-  return <div style={{ padding: "20px" }}>En construcción</div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100dvh",
+      }}
+    >
+      <h4> En construcción</h4>
+    </div>
+  );
 };

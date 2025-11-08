@@ -1,9 +1,14 @@
-
-
 export const MapPage = () => {
   return (
-    <p>
-      hola
-    </p>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100dvh",
+      }}
+    >
+      <h4> En construcción</h4>
+    </div>
   );
 };
