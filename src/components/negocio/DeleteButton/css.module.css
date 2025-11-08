@@ -15,8 +15,6 @@
  
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-
-  
 }
 
 .searchWrapper {
@@ -558,7 +556,6 @@
   background-color: var(--color-white);
    border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-    padding-bottom: 50px;
 }
 .back_button{
   position: absolute;
@@ -574,25 +571,4 @@
   padding-top: 20px;
   padding-inline: 10px;
   color: var(--color-white);
-}
-.cardLabelCenter{
-  font-weight: 600;
-  color: #6b7280;
-  font-size: 13px;
-  text-align: center;
-  flex-shrink: 0;
-  margin-bottom: 10px;
-  font-weight: 600;
-  color: #1f2937;
-}
-.cardTextAreaValue{
-  color: #1f2937;
-  font-size: 14px;
-  text-align: center;
-  white-space: pre-wrap;
-}
-.cardTextAreaRow{
-  border-top: 1px solid #f3f4f6;
-  padding: 10px 0;
-  padding-bottom: 15px;
 }

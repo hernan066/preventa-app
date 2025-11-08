@@ -13,6 +13,8 @@ import { useDispatch } from "react-redux";
 import { resetNegocioPosicion } from "../../../redux/mapSlice";
 import { useEffect } from "react";
 import SelectMultipleFormik from "../../form/SelectMultipleFormik";
+import { marcasPollos, proveedores } from "../../../../data/data";
+import Swal from "sweetalert2";
 
 const SignupSchema = Yup.object().shape({
   nombreNegocio: Yup.string().required("Requerido"),
@@ -45,7 +47,7 @@ export const NuevoNegocio = () => {
     esCliente: false,
     productosQueCompra: [],
     productosQueLeInteresan: [],
-    distribuidorActual: "",
+    distribuidorActual: [],
   };
 
   const handleSubmit = async (values, { resetForm }) => {
@@ -59,6 +61,21 @@ export const NuevoNegocio = () => {
       await postNegocio(data).unwrap();
       dispatch(resetNegocioPosicion());
       resetForm();
+       const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              },
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Negocio creado!",
+            });
       navigate("/");
     } catch (error) {
       console.error("Error al registrar negocio:", error);
@@ -242,13 +259,7 @@ export const NuevoNegocio = () => {
                 <label htmlFor="productosQueCompra">Productos que compra</label>
                 <SelectMultipleFormik
                   name="productosQueCompra"
-                  options={[
-                    { value: "pollo 1", label: "Pollo 1" },
-                    { value: "pollo 2", label: "Pollo 2" },
-                    { value: "pollo 3", label: "Pollo 3" },
-                    { value: "pollo 4", label: "Pollo 4" },
-                    { value: "pollo 5", label: "Pollo 5" },
-                  ]}
+                  options={marcasPollos}
                   placeholder="Selecciona una o varias categorías..."
                 />
               </div>
@@ -258,27 +269,17 @@ export const NuevoNegocio = () => {
                 </label>
                 <SelectMultipleFormik
                   name="productosQueLeInteresan"
-                  options={[
-                    { value: "pollo 1", label: "Pollo 1" },
-                    { value: "pollo 2", label: "Pollo 2" },
-                    { value: "pollo 3", label: "Pollo 3" },
-                    { value: "pollo 4", label: "Pollo 4" },
-                    { value: "pollo 5", label: "Pollo 5" },
-                  ]}
+                  options={marcasPollos}
                   placeholder="Selecciona una o varias categorías..."
                 />
               </div>
-
               <div className={style.input__container}>
                 <label htmlFor="distribuidorActual">Distribuidor actual</label>
-                <Field as="select" name="distribuidorActual">
-                  <option value="">Selecciona una opción</option>
-                  <option value="distribuidor 1">Distribuidor 1</option>
-                  <option value="distribuidor 2">Distribuidor 2</option>
-                  <option value="distribuidor 3">Distribuidor 3</option>
-                  <option value="distribuidor 4">Distribuidor 4</option>
-                  <option value="distribuidor 5">Distribuidor 5</option>
-                </Field>
+                <SelectMultipleFormik
+                  name="distribuidorActual"
+                  options={proveedores}
+                  placeholder="Selecciona una o varias categorías..."
+                />
               </div>
 
               {/* Botón enviar */}

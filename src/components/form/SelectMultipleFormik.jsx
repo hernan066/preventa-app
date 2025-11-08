@@ -1,65 +1,31 @@
-/* import Select from "react-select";
-import { useField, useFormikContext } from "formik";
-
-const SelectMultipleFormik = ({ name, options, placeholder }) => {
-  const { setFieldValue } = useFormikContext();
-  const [field, meta] = useField(name );
-
-  const handleChange = (selectedOptions) => {
-    // Guarda solo los valores en el formik (array de strings)
-    setFieldValue(
-      name,
-      selectedOptions ? selectedOptions.map((opt) => opt.value) : []
-    );
-  };
-
-  // Convierte el valor actual de Formik en el formato que react-select entiende
-  const currentValue =
-    options.filter((opt) => field.value.includes(opt.value)) || [];
-
-  return (
-    <div className="w-full">
-      <Select
-        isMulti
-        options={options}
-        value={currentValue}
-        onChange={handleChange}
-        placeholder={placeholder || "Seleccionar..."}
-        isSearchable
-        classNamePrefix="react-select"
-      />
-      {meta.touched && meta.error && (
-        <p className="login__error">{meta.error}</p>
-      )}
-    </div>
-  );
-};
-
-export default SelectMultipleFormik; */
-import React from "react";
+import { useEffect, useMemo } from "react";
 import Select from "react-select";
 import { useFormikContext, useField } from "formik";
 
-const SelectMultipleFormik = ({ name, options, placeholder }) => {
-  // Estos hooks deben ejecutarse DENTRO de un <Formik>
-  const { setFieldValue } = useFormikContext();
+const SelectMultipleFormik = ({ name, options = [], placeholder }) => {
+  const { setFieldValue, values } = useFormikContext();
   const [field, meta] = useField(name);
-  
+
+  // 🔹 Asegura que el campo tenga siempre un array
+  useEffect(() => {
+    if (!Array.isArray(field.value)) {
+      setFieldValue(name, []);
+    }
+  }, [field.value, name, setFieldValue]);
+
+  // 🔹 Filtra los valores seleccionados en base a las opciones
+  const selectedValues = useMemo(() => {
+    if (!options || options.length === 0) return [];
+    return options.filter((opt) => field.value?.includes(opt.value));
+  }, [options, field.value]);
 
   const handleChange = (selectedOptions) => {
-    setFieldValue(
-      name,
-      selectedOptions ? selectedOptions.map((opt) => opt.value) : []
-    );
+    const values = selectedOptions ? selectedOptions.map((opt) => opt.value) : [];
+    setFieldValue(name, values);
   };
 
-  // Para mostrar valores seleccionados correctamente en react-select
-  const selectedValues = options.filter((opt) =>
-    field.value?.includes(opt.value)
-  );
-
   return (
-    <div style={{ width: '100%'}}>
+    <div style={{ width: "100%" }}>
       <Select
         isMulti
         options={options}
@@ -71,7 +37,6 @@ const SelectMultipleFormik = ({ name, options, placeholder }) => {
         styles={{
           control: (base) => ({
             ...base,
-          
             borderRadius: "0.75rem",
             borderColor: "#ccc",
             padding: "2px 4px",
@@ -88,4 +53,3 @@ const SelectMultipleFormik = ({ name, options, placeholder }) => {
 };
 
 export default SelectMultipleFormik;
-

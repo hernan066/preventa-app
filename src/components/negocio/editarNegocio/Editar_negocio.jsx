@@ -3,8 +3,21 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { usePutNegocioMutation } from "../../../api/apiNegocio";
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack, IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
+import { marcasPollos, proveedores } from "../../../../data/data";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  resetNegocioPosicion,
+  setNegocioPosicion,
+} from "../../../redux/mapSlice";
+import { useSelector } from "react-redux";
+import SelectMultipleFormik from "../../form/SelectMultipleFormik";
+import { FaCheck } from "react-icons/fa";
+import { Modal } from "../../modal/Modal";
+import MobileMap from "../../map/MobileMap";
+import { useState } from "react";
 
 const SignupSchema = Yup.object().shape({
   nombreNegocio: Yup.string().required("Requerido"),
@@ -15,9 +28,17 @@ const SignupSchema = Yup.object().shape({
 
 export const EditarNegocio = ({ negocio }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [openMap, setOpenMap] = useState(false);
 
   const [updateNegocio, { isLoading: isUpdating, isError }] =
     usePutNegocioMutation();
+  useEffect(() => {
+    dispatch(setNegocioPosicion({ lat: negocio.lat, lng: negocio.lng }));
+  }, []);
+
+  const { lat, lng } = useSelector((state) => state.map);
 
   const initialValues = {
     nombreNegocio: negocio?.nombreNegocio || "",
@@ -30,10 +51,10 @@ export const EditarNegocio = ({ negocio }) => {
     potencial: negocio?.potencial || "",
     fueVisitado: negocio?.fueVisitado || false,
     esCliente: negocio?.esCliente || false,
-    productosQueCompra: negocio?.informacionAdicional.productosQueCompra || "",
+    productosQueCompra: negocio?.productosQueCompra || [],
     productosQueLeInteresan:
-      negocio?.informacionAdicional.productosQueLeInteresan || "",
-    distribuidorActual: negocio?.informacionAdicional.distribuidorActual || "",
+      negocio?.productosQueLeInteresan || [],
+    distribuidorActual: negocio?.distribuidorActual || [],
   };
 
   const handleSubmit = async (values) => {
@@ -42,6 +63,8 @@ export const EditarNegocio = ({ negocio }) => {
         id: negocio._id,
         ...values,
         potencial: Number(values.potencial),
+        lat,
+        lng,
       };
       await updateNegocio(data).unwrap();
       const Toast = Swal.mixin({
@@ -59,6 +82,7 @@ export const EditarNegocio = ({ negocio }) => {
         icon: "success",
         title: "Negocio actualizado!",
       });
+      dispatch(resetNegocioPosicion());
       navigate("/home/negocios/lista");
     } catch (error) {
       console.error("Error al actualizar negocio:", error);
@@ -115,6 +139,27 @@ export const EditarNegocio = ({ negocio }) => {
                 component="p"
                 className="login__error"
               />
+              {/* Ubicación */}
+              <div className={style.input__container}>
+                <label>Ubicación en el mapa</label>
+                <div className={style.mapBtn_container}>
+                  <button
+                    type="button"
+                    className={lat && lng ? style.mapBtnCheck : style.mapBtn}
+                    onClick={() => setOpenMap(true)}
+                  >
+                    {lat && lng
+                      ? "Ubicación seleccionada"
+                      : "Seleccionar ubicación en el mapa"}
+                  </button>
+                  {lat && (
+                    <FaCheck color="green" size={25} className={style.icon} />
+                  )}
+                  {!lat && (
+                    <IoClose color="red" size={30} className={style.icon} />
+                  )}
+                </div>
+              </div>
 
               {/* Teléfono */}
               <div className={style.input__container}>
@@ -216,22 +261,33 @@ export const EditarNegocio = ({ negocio }) => {
 
               <h4>Información adicional</h4>
 
-              {/* Textareas */}
               <div className={style.input__container}>
                 <label htmlFor="productosQueCompra">Productos que compra</label>
-                <Field as="textarea" name="productosQueCompra" />
+                <SelectMultipleFormik
+                  name="productosQueCompra"
+                  options={marcasPollos}
+                  placeholder="Selecciona una o varias categorías..."
+                />
               </div>
 
               <div className={style.input__container}>
                 <label htmlFor="productosQueLeInteresan">
                   Productos que le interesan
                 </label>
-                <Field as="textarea" name="productosQueLeInteresan" />
+                <SelectMultipleFormik
+                  name="productosQueLeInteresan"
+                  options={marcasPollos}
+                  placeholder="Selecciona una o varias categorías..."
+                />
               </div>
 
               <div className={style.input__container}>
                 <label htmlFor="distribuidorActual">Distribuidor actual</label>
-                <Field type="text" name="distribuidorActual" />
+                <SelectMultipleFormik
+                  name="distribuidorActual"
+                  options={proveedores}
+                  placeholder="Selecciona una o varias categorías..."
+                />
               </div>
 
               {/* Botón enviar */}
@@ -251,6 +307,11 @@ export const EditarNegocio = ({ negocio }) => {
           )}
         </Formik>
       </div>
+      {openMap && (
+        <Modal onClose={() => setOpenMap(false)}>
+          <MobileMap />
+        </Modal>
+      )}
     </main>
   );
 };

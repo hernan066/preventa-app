@@ -5,6 +5,7 @@ import { IoArrowBack, IoEyeOutline } from "react-icons/io5";
 import { IoTrashOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { DeleteButton } from "../DeleteButton/DeleteButton";
 
 const DataTable = ({ columns, data, rowsPerPage = 10 }) => {
   console.log(data);
@@ -169,29 +170,6 @@ const DataTable = ({ columns, data, rowsPerPage = 10 }) => {
     return buttons;
   };
 
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Desea borrar este negocio?",
-      showCancelButton: true,
-      confirmButtonText: "Borrar",
-      cancelButtonText: "Cancelar",
-      confirmButtonColor: "#d33",
-      customClass: {
-        popup: "mi-popup",
-        title: "mi-titulo",
-        confirmButton: "mi-boton-confirmar",
-        cancelButton: "mi-boton-cancelar",
-      },
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Borrado!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Negocio no borrado", "", "info");
-      }
-    });
-  };
-
   return (
     <div className={styles.container}>
       <button className={styles.back_button} onClick={() => navigate(-1)}>
@@ -316,12 +294,7 @@ const DataTable = ({ columns, data, rowsPerPage = 10 }) => {
                 >
                   <FiEdit />
                 </button>
-                <button
-                  className={styles.btn}
-                  onClick={() => handleDelete(row._id)}
-                >
-                  <IoTrashOutline />
-                </button>
+                <DeleteButton id={row._id} />
               </div>
               {columns.map((column) => (
                 <div key={column.key} className={styles.cardRow}>

@@ -1,14 +1,35 @@
 import styles from "./css.module.css";
-import { useState, useMemo } from "react";
 import { FiEdit } from "react-icons/fi";
-import { IoArrowBack, IoEyeOutline } from "react-icons/io5";
+import { IoArrowBack } from "react-icons/io5";
 import { IoTrashOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { mapValuesToLabels } from "../../../utils/mapValuesToLabels";
+import { marcasPollos, proveedores } from "../../../../data/data";
+import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import { DeleteButton } from "../DeleteButton/DeleteButton";
+import { dateToLocalDate } from "../../../utils/dateFormat";
 
 const formatPotencial = (value) => "★".repeat(value);
 export const DetalleNegocio = ({ data }) => {
   console.log(data);
   const navigate = useNavigate();
+
+  // Convertimos los valores a labels legibles
+  const distribuidorActualLabel = mapValuesToLabels(
+    data?.distribuidorActual,
+    proveedores
+  ).join(", ");
+
+  const productosQueCompraLabels = mapValuesToLabels(
+    data?.productosQueCompra,
+    marcasPollos
+  ).join(", ");
+
+  const productosQueLeInteresanLabels = mapValuesToLabels(
+    data?.productosQueLeInteresan,
+    marcasPollos
+  ).join(", ");
 
   return (
     <div className={styles.container}>
@@ -24,13 +45,11 @@ export const DetalleNegocio = ({ data }) => {
             <div className={styles.btn_container}>
               <button
                 className={styles.btn}
-                onClick={() => navigate(`/home/negocios/editar/${row._id}`)}
+                onClick={() => navigate(`/home/negocios/editar/${data._id}`)}
               >
                 <FiEdit />
               </button>
-              <button className={styles.btn}>
-                <IoTrashOutline />
-              </button>
+              <DeleteButton id={data._id} />
             </div>
 
             <div className={styles.cardRow}>
@@ -49,7 +68,18 @@ export const DetalleNegocio = ({ data }) => {
             </div>
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Telefono:</span>
-              <span className={styles.cardValue}>{data.telefono}</span>
+              <a
+                href={`https://wa.me/${data.telefono}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: "#25D366",
+                  textDecoration: "underline",
+                  fontWeight: "500",
+                }}
+              >
+                {data.telefono}
+              </a>
             </div>
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Categoria:</span>
@@ -57,16 +87,35 @@ export const DetalleNegocio = ({ data }) => {
             </div>
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Horario Apertura:</span>
-              <span className={styles.cardValue}>{data.horarioApertura + 'hs'}</span>
+              <span className={styles.cardValue}>
+                {data.horarioApertura + "hs"}
+              </span>
             </div>
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Horario Cierre:</span>
-              <span className={styles.cardValue}>{data.horarioCierre + 'hs'}</span>
+              <span className={styles.cardValue}>
+                {data.horarioCierre + "hs"}
+              </span>
             </div>
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Potencial:</span>
-              <span className={styles.cardValue}>{formatPotencial(data.potencial)}</span>
+              <span className={styles.cardValue}>
+                {formatPotencial(data.potencial)}
+              </span>
             </div>
+            <div className={styles.cardRow}>
+              <span className={styles.cardLabel}>Cargado:</span>
+              <span className={styles.cardValue}>
+                {dateToLocalDate(data.createdAt)}
+              </span>
+            </div>
+            <div className={styles.cardRow}>
+              <span className={styles.cardLabel}>Modificado:</span>
+              <span className={styles.cardValue}>
+                {dateToLocalDate(data.updatedAt)}
+              </span>
+            </div>
+
             <div className={styles.cardRow}>
               <span className={styles.cardLabel}>Fue Visitado?:</span>
               <span className={styles.cardValue}>
@@ -79,19 +128,17 @@ export const DetalleNegocio = ({ data }) => {
                 {data.esCliente ? "Si" : "No"}
               </span>
             </div>
-            <h4 style={{textAlign: 'center'}}>Informacion Adicional</h4>
-             <div className={styles.cardRow}>
-              <span className={styles.cardLabel}>Distribuidor Actual:</span>
-              <span className={styles.cardValue}>
-                {data?.informacionAdicional.distribuidorActual || ""}
-              </span>
-               </div>
+            <h4 style={{ textAlign: "center" }}>Informacion Adicional</h4>
             <div className={styles.cardTextAreaRow}>
-              <p className={styles.cardLabelCenter}>
-                Productos Que Compra:
-              </p>
+              <p className={styles.cardLabelCenter}>Distribuidor Actual:</p>
               <p className={styles.cardTextAreaValue}>
-                {data?.informacionAdicional.productosQueCompra || ""}
+                {distribuidorActualLabel || "—"}
+              </p>
+            </div>
+            <div className={styles.cardTextAreaRow}>
+              <p className={styles.cardLabelCenter}>Productos Que Compra:</p>
+              <p className={styles.cardTextAreaValue}>
+                {productosQueCompraLabels || "—"}
               </p>
             </div>
             <div className={styles.cardTextAreaRow}>
@@ -99,10 +146,24 @@ export const DetalleNegocio = ({ data }) => {
                 Productos Que Le Interesan:
               </p>
               <p className={styles.cardTextAreaValue}>
-                {data?.informacionAdicional.productosQueLeInteresan || ""}
+                {productosQueLeInteresanLabels || "—"}
               </p>
             </div>
-           
+            <h4 style={{ textAlign: "center" }}>Ubicación</h4>
+            <MapContainer
+              center={[data.lat, data.lng]}
+              zoom={15}
+              style={{ height: "70dvh", width: "100%" }}
+            >
+              <>
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution="&copy; OpenStreetMap contributors"
+                />
+
+                <Marker position={[data.lat, data.lng]} />
+              </>
+            </MapContainer>
           </div>
         </div>
       </div>

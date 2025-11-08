@@ -21,6 +21,22 @@ const formatDireccion = (value) => {
     .join(" ");
 };
 
+const formatTelefono = (value) => {
+  if (!value) return "—";
+  // Limpia el número para evitar espacios o guiones
+  const cleanNumber = value.replace(/\D/g, "");
+  return (
+    <a
+      href={`https://wa.me/${cleanNumber}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ color: "#25D366", textDecoration: 'underline', fontWeight: "500" }}
+    >
+      {value}
+    </a>
+  );
+};
+
 const columns = [
   {
     key: "nombreNegocio",
@@ -35,6 +51,13 @@ const columns = [
     sortable: true,
     filterable: true,
     format: formatDireccion,
+  },
+  {
+    key: "telefono",
+    label: "Teléfono",
+    sortable: true,
+    filterable: true,
+    format: formatTelefono,
   },
   {
     key: "categoria",
