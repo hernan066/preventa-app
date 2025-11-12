@@ -37,6 +37,26 @@ const formatTelefono = (value) => {
   );
 };
 
+const formatArrayLabels = (arr) => {
+  if (!Array.isArray(arr) || arr.length === 0) return "—";
+
+  return arr
+    .map((item) => {
+      // reemplaza guiones bajos por espacios
+      const withSpaces = item.replace(/_/g, " ");
+
+      // capitaliza cada palabra
+      return withSpaces
+        .split(" ")
+        .map(
+          (word) =>
+            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join(" ");
+    })
+    .join(", ");
+};
+
 const columns = [
   {
     key: "nombreNegocio",
@@ -87,6 +107,27 @@ const columns = [
     filterable: false,
     format: formatPotencial,
   },
+  /* {
+    key: "productosQueCompra",
+    label: "Productos que compra",
+    sortable: true,
+    filterable: false,
+    format: formatArrayLabels,
+  },
+  {
+    key: "productosQueCompra",
+    label: "Categorias que le interesan",
+    sortable: true,
+    filterable: false,
+    format: formatArrayLabels,
+  },
+  {
+    key: "distribuidorActual",
+    label: "Distribuidor",
+    sortable: true,
+    filterable: false,
+    format: formatArrayLabels,
+  }, */
 ];
 
 export const ListaNegocioPage = () => {

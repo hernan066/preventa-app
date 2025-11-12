@@ -2,9 +2,7 @@ import styles from "./css.module.css";
 import { useState, useMemo } from "react";
 import { FiEdit } from "react-icons/fi";
 import { IoArrowBack, IoEyeOutline } from "react-icons/io5";
-import { IoTrashOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { DeleteButton } from "../DeleteButton/DeleteButton";
 
 const DataTable = ({ columns, data, rowsPerPage = 10 }) => {
