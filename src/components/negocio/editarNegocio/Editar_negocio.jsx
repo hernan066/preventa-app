@@ -51,6 +51,7 @@ export const EditarNegocio = ({ negocio }) => {
     potencial: negocio?.potencial || "",
     fueVisitado: negocio?.fueVisitado || false,
     esCliente: negocio?.esCliente || false,
+    vendeNuestrasCategorias: negocio?.vendeNuestrasCategorias || false,
     productosQueCompra: negocio?.productosQueCompra || [],
     productosQueLeInteresan:
       negocio?.productosQueLeInteresan || [],
@@ -256,6 +257,10 @@ export const EditarNegocio = ({ negocio }) => {
                 <label>
                   <Field type="checkbox" name="esCliente" />
                   Es cliente?
+                </label>
+                <label>
+                  <Field type="checkbox" name="vendeNuestrasCategorias" />
+                  Vende nuestras categorias?
                 </label>
               </div>
 

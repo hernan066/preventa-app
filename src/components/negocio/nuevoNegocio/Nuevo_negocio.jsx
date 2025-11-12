@@ -45,6 +45,7 @@ export const NuevoNegocio = () => {
     potencial: "",
     fueVisitado: false,
     esCliente: false,
+    vendeNuestrasCategorias: false,
     productosQueCompra: [],
     productosQueLeInteresan: [],
     distribuidorActual: [],
@@ -250,6 +251,10 @@ export const NuevoNegocio = () => {
                 <label>
                   <Field type="checkbox" name="esCliente" />
                   Es cliente?
+                </label>
+                <label>
+                  <Field type="checkbox" name="vendeNuestrasCategorias" />
+                  Vende nuestras categorias?
                 </label>
               </div>
 
