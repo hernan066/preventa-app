@@ -5,7 +5,11 @@ import * as Yup from "yup";
 import { usePutNegocioMutation } from "../../../api/apiNegocio";
 import { IoArrowBack, IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
-import { categoriasProductos, marcasPollos, proveedores } from "../../../../data/data";
+import {
+  categoriasProductos,
+  marcasPollos,
+  proveedores,
+} from "../../../../data/data";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -53,8 +57,7 @@ export const EditarNegocio = ({ negocio }) => {
     esCliente: negocio?.esCliente || false,
     vendeNuestrasCategorias: negocio?.vendeNuestrasCategorias || false,
     productosQueCompra: negocio?.productosQueCompra || [],
-    productosQueLeInteresan:
-      negocio?.productosQueLeInteresan || [],
+    productosQueLeInteresan: negocio?.productosQueLeInteresan || [],
     distribuidorActual: negocio?.distribuidorActual || [],
   };
 
@@ -250,18 +253,16 @@ export const EditarNegocio = ({ negocio }) => {
 
               {/* Checkboxes */}
               <div className={style.checkbox_container}>
-                <label>
-                  <Field type="checkbox" name="fueVisitado" />
-                  Ya fue visitado?
-                </label>
-                <label>
-                  <Field type="checkbox" name="esCliente" />
-                  Es cliente?
-                </label>
-                <label>
-                  <Field type="checkbox" name="vendeNuestrasCategorias" />
-                  Vende nuestras categorias?
-                </label>
+                <label>Ya fue visitado?</label>
+                <Field type="checkbox" name="fueVisitado" />
+              </div>
+              <div className={style.checkbox_container}>
+                <label>Es cliente?</label>
+                <Field type="checkbox" name="esCliente" />
+              </div>
+              <div className={style.checkbox_container}>
+                <label>Vende nuestras categorias?</label>
+                <Field type="checkbox" name="vendeNuestrasCategorias" />
               </div>
 
               <h4>Información adicional</h4>

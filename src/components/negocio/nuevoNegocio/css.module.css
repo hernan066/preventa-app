@@ -1,29 +1,25 @@
 .container {
   min-height: calc(100vh + 20px);
 
-  
   background-color: var(--color-grey);
   position: relative;
   text-align: center;
 }
-.welcome_text{
+.welcome_text {
   padding-top: 20px;
   padding-inline: 10px;
   color: var(--color-white);
-  
 }
-.welcome_text h2{
- font-size: 25px;
+.welcome_text h2 {
+  font-size: 25px;
   margin-bottom: 10px;
-  
 }
-.logo__img{
+.logo__img {
   width: 100px;
- 
 }
 
 .btn_container {
-padding: 10px;
+  padding: 10px;
   margin-top: 40px;
   background-color: var(--color-white);
   height: auto;
@@ -32,7 +28,6 @@ padding: 10px;
 
   padding-top: 30px;
   padding-bottom: 130px;
- 
 }
 .btn {
   width: 95%;
@@ -51,7 +46,6 @@ padding: 10px;
   align-items: flex-start;
   margin-bottom: 15px;
   width: 100%;
-  
 }
 .input__container label {
   margin-bottom: 5px;
@@ -65,24 +59,20 @@ padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 16px;
-  background-color: 'white';
+  background-color: "white";
 }
 
 .checkbox_container {
-  
   margin-bottom: 15px;
   display: flex;
-  justify-content: center;
- 
-
+  justify-content: space-between;
 }
 .checkbox_container label {
-  margin-right: 20px;
   font-weight: 500;
-  
 }
 .checkbox_container input {
-  margin-right: 5px;
+  width: 20px;
+  height: 20px;
 }
 
 h4 {
@@ -91,7 +81,7 @@ h4 {
   font-size: 18px;
 }
 
-.back_button{
+.back_button {
   position: absolute;
   top: 28px;
   left: 10px;
@@ -143,9 +133,8 @@ h4 {
 .mapBtn_container {
   width: 100%;
 }
-.icon{
+.icon {
   position: relative;
   top: 10px;
   margin-left: 5px;
 }
-

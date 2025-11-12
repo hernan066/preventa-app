@@ -13,7 +13,11 @@ import { useDispatch } from "react-redux";
 import { resetNegocioPosicion } from "../../../redux/mapSlice";
 import { useEffect } from "react";
 import SelectMultipleFormik from "../../form/SelectMultipleFormik";
-import { categoriasProductos, marcasPollos, proveedores } from "../../../../data/data";
+import {
+  categoriasProductos,
+  marcasPollos,
+  proveedores,
+} from "../../../../data/data";
 import Swal from "sweetalert2";
 
 const SignupSchema = Yup.object().shape({
@@ -62,21 +66,21 @@ export const NuevoNegocio = () => {
       await postNegocio(data).unwrap();
       dispatch(resetNegocioPosicion());
       resetForm();
-       const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              },
-            });
-            Toast.fire({
-              icon: "success",
-              title: "Negocio creado!",
-            });
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        },
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Negocio creado!",
+      });
       navigate("/");
     } catch (error) {
       console.error("Error al registrar negocio:", error);
@@ -244,18 +248,16 @@ export const NuevoNegocio = () => {
 
               {/* Checkboxes */}
               <div className={style.checkbox_container}>
-                <label>
-                  <Field type="checkbox" name="fueVisitado" />
-                  Ya fue visitado?
-                </label>
-                <label>
-                  <Field type="checkbox" name="esCliente" />
-                  Es cliente?
-                </label>
-                <label>
-                  <Field type="checkbox" name="vendeNuestrasCategorias" />
-                  Vende nuestras categorias?
-                </label>
+                <label>Ya fue visitado?</label>
+                <Field type="checkbox" name="fueVisitado" />
+              </div>
+              <div className={style.checkbox_container}>
+                <label>Es cliente?</label>
+                <Field type="checkbox" name="esCliente" />
+              </div>
+              <div className={style.checkbox_container}>
+                <label>Vende nuestras categorias?</label>
+                <Field type="checkbox" name="vendeNuestrasCategorias" />
               </div>
 
               <h4>Información adicional</h4>
