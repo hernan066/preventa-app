@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { resetNegocioPosicion } from "../../../redux/mapSlice";
 import { useEffect } from "react";
 import SelectMultipleFormik from "../../form/SelectMultipleFormik";
-import { marcasPollos, proveedores } from "../../../../data/data";
+import { categoriasProductos, marcasPollos, proveedores } from "../../../../data/data";
 import Swal from "sweetalert2";
 
 const SignupSchema = Yup.object().shape({
@@ -265,11 +265,11 @@ export const NuevoNegocio = () => {
               </div>
               <div className={style.input__container}>
                 <label htmlFor="productosQueLeInteresan">
-                  Productos que le interesan
+                  Categorias que le interesan
                 </label>
                 <SelectMultipleFormik
                   name="productosQueLeInteresan"
-                  options={marcasPollos}
+                  options={categoriasProductos}
                   placeholder="Selecciona una o varias categorías..."
                 />
               </div>

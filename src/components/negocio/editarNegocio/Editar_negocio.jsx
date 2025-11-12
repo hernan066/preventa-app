@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import { usePutNegocioMutation } from "../../../api/apiNegocio";
 import { IoArrowBack, IoClose } from "react-icons/io5";
 import Swal from "sweetalert2";
-import { marcasPollos, proveedores } from "../../../../data/data";
+import { categoriasProductos, marcasPollos, proveedores } from "../../../../data/data";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
@@ -272,11 +272,11 @@ export const EditarNegocio = ({ negocio }) => {
 
               <div className={style.input__container}>
                 <label htmlFor="productosQueLeInteresan">
-                  Productos que le interesan
+                  Categorias que le interesan
                 </label>
                 <SelectMultipleFormik
                   name="productosQueLeInteresan"
-                  options={marcasPollos}
+                  options={categoriasProductos}
                   placeholder="Selecciona una o varias categorías..."
                 />
               </div>

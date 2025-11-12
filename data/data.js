@@ -25,8 +25,8 @@ export const proveedores = [
   { label: "Toni", value: "toni" },
   { label: "Tres Arroyos", value: "tres_arroyos" },
   { label: "Vacuno Azul", value: "vacuno_azul" },
+  { label: "Otros", value: "otros" },
 ];
-
 
 export const marcasPollos = [
   { label: "1962", value: "1962" },
@@ -65,5 +65,15 @@ export const marcasPollos = [
   { label: "Tcr", value: "tcr" },
   { label: "Tres Arroyos", value: "tres_arroyos" },
   { label: "Valentino", value: "valentino" },
+  { label: "Otros", value: "otros" },
 ];
 
+export const categoriasProductos = [
+  { label: "Carnes Vacunas", value: "carnes_vacunas" },
+  { label: "Cerdo", value: "cerdo" },
+  { label: "Congelados", value: "congelados" },
+  { label: "Embutidos", value: "embutidos" },
+  { label: "Pollo", value: "pollo" },
+  { label: "Secos", value: "secos" },
+  { label: "Otros", value: "otros" },
+];
